@@ -2,8 +2,8 @@ import logo from "./logo.svg";
 import "./styles.scss";
 import Excel from "./components/Excel";
 
-const ROWS = 3;
-const COLUMNS = 3;
+const ROWS = 15;
+const COLUMNS = 15;
 
 function App() {
   return (

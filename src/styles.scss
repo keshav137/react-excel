@@ -1,3 +1,66 @@
 .App {
   text-align: center;
+  display: flex;
+  position: relative;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 15px 50px 15px 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell-parent {
+  position: relative;
+  width: 70px;
+
+  // setting css of all descendant html input tags inside .cell-parent
+  input {
+    padding: 10px;
+    box-sizing: border-box;
+  }
+}
+
+// when .cell-parent is selected, update the css of its direct descendant div
+.cell-parent:focus-within {
+  > div {
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    background-color: #fff;
+    > div {
+      min-width: 125px;
+      height: 30px;
+    }
+  }
+  input {
+    text-align: left;
+  }
+}
+
+.cell {
+  display: flex;
+}
+
+// setting css of direct child div of cell class element
+.cell > div {
+  border-radius: 0px;
+}
+
+.label-cell {
+  input {
+    text-align: center;
+  }
+}
+
+.input-cell {
+  input {
+    text-align: right;
+  }
 }

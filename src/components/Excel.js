@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField } from "@mui/material";
 
 const Excel = ({ rows, columns }) => {
-  let initialGrid = useMemo(() => {
+  const initialGrid = useMemo(() => {
     let matrix = [];
     for (var i = 0; i < rows + 1; i++) {
       matrix.push([]);
@@ -15,11 +15,9 @@ const Excel = ({ rows, columns }) => {
 
   const [grid, setGrid] = useState(initialGrid);
   const [selected, setSelected] = useState(null);
-  const ref = useRef(null);
 
   const handleOnChange = (event, i, j) => {
     grid[i][j] = event.target.value;
-
     // deep copy the grid
     let updatedGrid = [];
     for (var i = 0; i < grid.length; i++) {
@@ -33,17 +31,17 @@ const Excel = ({ rows, columns }) => {
 
   const getValueFromExcelNotation = (notation) => {
     const x = parseInt(notation[1]);
-    const y = parseInt(notation.charCodeAt(0)) - 64;
+    const y = notation.charCodeAt(0) - 64;
     return parseInt(grid[x][y]);
   };
 
   const resolveValue = (value, i, j) => {
-    // improve this check
-    if (isSelected(i, j) || value.length < 6 || value[0] != "=") {
+    // TODO improve this check
+    if (isSelected(i, j) || value.length < 3 || value[0] != "=") {
       return value;
     }
 
-    let elements = value.split("=")[1].split("+");
+    const elements = value.split("=")[1].split("+");
     let sum = 0;
     elements.forEach(function (element) {
       sum += getValueFromExcelNotation(element);
@@ -66,13 +64,28 @@ const Excel = ({ rows, columns }) => {
       let rowLabel = String.fromCharCode(96 + j).toUpperCase();
       let columnLabel = String(i);
       let entry;
-      if (i == 0) {
+
+      if (i == 0 && j == 0) {
         entry = (
-          <TextField label={rowLabel} variant="outlined" disabled={true} />
+          <TextField className="cell label-cell" variant="outlined" disabled />
         );
       } else if (j == 0) {
         entry = (
-          <TextField label={columnLabel} variant="outlined" disabled={true} />
+          <TextField
+            className="cell label-cell"
+            value={columnLabel}
+            variant="outlined"
+            disabled
+          />
+        );
+      } else if (i == 0) {
+        entry = (
+          <TextField
+            className="cell label-cell"
+            value={rowLabel}
+            variant="outlined"
+            disabled
+          />
         );
       } else {
         let value = grid[i][j];
@@ -80,6 +93,7 @@ const Excel = ({ rows, columns }) => {
 
         entry = (
           <TextField
+            className="cell input-cell"
             variant="outlined"
             value={value}
             onClick={() => {
@@ -89,12 +103,13 @@ const Excel = ({ rows, columns }) => {
           />
         );
       }
-      matrixRow.push(entry);
+
+      matrixRow.push(<div className="cell-parent">{entry}</div>);
     }
-    matrix.push(<div>{matrixRow}</div>);
+    matrix.push(<div className="row">{matrixRow}</div>);
   }
 
-  return <div>{matrix}</div>;
+  return <div className="grid">{matrix}</div>;
 };
 
 export default Excel;
