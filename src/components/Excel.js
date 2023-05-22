@@ -1,17 +1,20 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { TextField } from "@mui/material";
 
-const Excel = ({ rows, columns }) => {
+const ROWS = 15;
+const COLUMNS = 15;
+
+const Excel = () => {
   const initialGrid = useMemo(() => {
     let matrix = [];
-    for (var i = 0; i < rows + 1; i++) {
+    for (var i = 0; i < ROWS + 1; i++) {
       matrix.push([]);
-      for (var j = 0; j < columns + 1; j++) {
+      for (var j = 0; j < COLUMNS + 1; j++) {
         matrix[i].push("");
       }
     }
     return matrix;
-  }, [rows, columns]);
+  }, []);
 
   const [grid, setGrid] = useState(initialGrid);
   const [selected, setSelected] = useState(null);
@@ -36,7 +39,6 @@ const Excel = ({ rows, columns }) => {
   };
 
   const resolveValue = (value, i, j) => {
-    // TODO improve this check
     if (isSelected(i, j) || value.length < 3 || value[0] != "=") {
       return value;
     }
@@ -96,6 +98,9 @@ const Excel = ({ rows, columns }) => {
             className="cell input-cell"
             variant="outlined"
             value={value}
+            onFocus={() => {
+              setSelected([i, j]);
+            }}
             onClick={() => {
               setSelected([i, j]);
             }}

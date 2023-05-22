@@ -7,7 +7,6 @@
 .grid {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   padding: 15px 50px 15px 15px;
 }
 
@@ -22,8 +21,10 @@
 
   // setting css of all descendant html input tags inside .cell-parent
   input {
-    padding: 10px;
+    padding: 7px;
+    font-size: 15px;
     box-sizing: border-box;
+    height: auto;
   }
 }
 
@@ -36,7 +37,7 @@
     background-color: #fff;
     > div {
       min-width: 125px;
-      height: 30px;
+      height: 40px;
     }
   }
   input {
