@@ -1,16 +1,15 @@
 {
   "files": {
     "main.css": "/react-excel/static/css/main.45f7fded.css",
-    "main.js": "/react-excel/static/js/main.de689f2a.js",
+    "main.js": "/react-excel/static/js/main.5bb20e81.js",
     "static/js/787.59b3f5f8.chunk.js": "/react-excel/static/js/787.59b3f5f8.chunk.js",
-    "static/media/logo.svg": "/react-excel/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/react-excel/index.html",
     "main.45f7fded.css.map": "/react-excel/static/css/main.45f7fded.css.map",
-    "main.de689f2a.js.map": "/react-excel/static/js/main.de689f2a.js.map",
+    "main.5bb20e81.js.map": "/react-excel/static/js/main.5bb20e81.js.map",
     "787.59b3f5f8.chunk.js.map": "/react-excel/static/js/787.59b3f5f8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.45f7fded.css",
-    "static/js/main.de689f2a.js"
+    "static/js/main.5bb20e81.js"
   ]
 }
