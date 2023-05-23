@@ -54,14 +54,18 @@ const Excel = () => {
     const elements = value.split("=")[1].split("+");
     let sum = 0;
     elements.forEach(function (element) {
-      let x = parseInt(element.slice(1));
-      let y = element.charCodeAt(0) - 64;
+      if (element == "0" || parseInt(element)) {
+        sum += parseInt(element);
+      } else {
+        let x = parseInt(element.slice(1));
+        let y = element.charCodeAt(0) - 64;
 
-      let value = grid[x][y];
-      if (value.length && value[0] == "=") {
-        value = resolveValue(grid, x, y);
+        let value = grid[x][y];
+        if (value.length && value[0] == "=") {
+          value = resolveValue(grid, x, y);
+        }
+        sum += parseInt(value);
       }
-      sum += parseInt(value);
     });
 
     return sum;
