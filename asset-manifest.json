@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-excel/static/css/main.1d310a44.css",
-    "main.js": "/react-excel/static/js/main.5c17d9b4.js",
+    "main.js": "/react-excel/static/js/main.f05fcaf5.js",
     "static/js/787.59b3f5f8.chunk.js": "/react-excel/static/js/787.59b3f5f8.chunk.js",
     "index.html": "/react-excel/index.html",
     "main.1d310a44.css.map": "/react-excel/static/css/main.1d310a44.css.map",
-    "main.5c17d9b4.js.map": "/react-excel/static/js/main.5c17d9b4.js.map",
+    "main.f05fcaf5.js.map": "/react-excel/static/js/main.f05fcaf5.js.map",
     "787.59b3f5f8.chunk.js.map": "/react-excel/static/js/787.59b3f5f8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1d310a44.css",
-    "static/js/main.5c17d9b4.js"
+    "static/js/main.f05fcaf5.js"
   ]
 }
