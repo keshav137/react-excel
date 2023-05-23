@@ -1,6 +1,6 @@
 # Excel/Google Sheets in React
 
-[Demo](https://keshav137.github.io/react-dropdown/)
+[Demo](https://keshav137.github.io/react-excel/)
 
 ## Setup
 
