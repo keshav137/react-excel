@@ -36,7 +36,7 @@ The `onFocus` and `onClick` handlers for each cell update the selected state to 
 
 ### Formula Parsing
 
-If a cell's value begins with "=", it's considered a formula. The resolveValue function handles parsing and calculation of these formulas. It only supports addition of cells referenced by their Excel-like notation (e.g., "A1+B2").
+If a cell's value begins with "=", it's considered a formula. The `resolveValue` function handles parsing and calculation of these formulas. It only supports addition of cells referenced by their Excel-like notation (e.g., "A1+B2"). This formula will recursively resolve values of cells inside a formula string, if they are pointing to another cell containing a formula.
 
 ### Technical Decisions
 
