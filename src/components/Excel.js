@@ -32,13 +32,9 @@ const Excel = () => {
     setGrid(updatedGrid);
   };
 
-  const getValueFromExcelNotation = (notation) => {
-    const x = parseInt(notation[1]);
-    const y = notation.charCodeAt(0) - 64;
-    return parseInt(grid[x][y]);
-  };
-
-  const resolveValue = (value, i, j) => {
+  // recursively resolve string value at grid[i][j]
+  const resolveValue = (grid, i, j) => {
+    let value = grid[i][j];
     if (isSelected(i, j) || value.length < 3 || value[0] != "=") {
       return value;
     }
@@ -46,7 +42,14 @@ const Excel = () => {
     const elements = value.split("=")[1].split("+");
     let sum = 0;
     elements.forEach(function (element) {
-      sum += getValueFromExcelNotation(element);
+      let x = parseInt(element.slice(1));
+      let y = element.charCodeAt(0) - 64;
+
+      let value = grid[x][y];
+      if (value.length && value[0] == "=") {
+        value = resolveValue(grid, x, y);
+      }
+      sum += parseInt(value);
     });
 
     return sum;
@@ -90,8 +93,7 @@ const Excel = () => {
           />
         );
       } else {
-        let value = grid[i][j];
-        value = resolveValue(value, i, j);
+        let value = resolveValue(grid, i, j);
 
         entry = (
           <TextField
