@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./styles.scss";
 import Excel from "./components/Excel";
 

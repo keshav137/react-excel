@@ -28,7 +28,7 @@
   }
 }
 
-// when .cell-parent is selected, update the css of its direct descendant div
+// when .cell-parent is selected, update the css of its descendant divs
 .cell-parent:focus-within {
   > div {
     position: absolute;
@@ -49,7 +49,6 @@
   display: flex;
 }
 
-// setting css of direct child div of cell class element
 .cell > div {
   border-radius: 0px;
 }
