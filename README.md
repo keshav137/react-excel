@@ -44,7 +44,7 @@ If a cell's value begins with "=", it's considered a formula. The `resolveValue`
 
 2. Use of Material-UI: Leveraging Material-UI helps create a user-friendly interface without having to manage detailed CSS and UI components manually.
 
-3.Focus Management: The selected cell is tracked in the state, allowing the component to handle cell focus changes appropriately and improve user interaction.
+3.Focus Management: The selected cell is tracked in the state, allowing the component to handle cell focus changes appropriately and improve user interaction. When the user clicks outside the grid, `selected` is set to null.
 
 ### Potential Enhancements
 

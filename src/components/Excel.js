@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { TextField } from "@mui/material";
 
 const ROWS = 15;
@@ -19,6 +19,18 @@ const Excel = () => {
   const [grid, setGrid] = useState(initialGrid);
   const [selected, setSelected] = useState(null);
 
+  useEffect(() => {
+    const onMouseClick = (e) => {
+      if (e.target.closest(".grid")) return;
+      setSelected(null);
+    };
+
+    document.addEventListener("click", onMouseClick);
+    return () => {
+      document.removeEventListener("click", onMouseClick);
+    };
+  }, []);
+
   const handleOnChange = (event, i, j) => {
     grid[i][j] = event.target.value;
     // deep copy the grid
@@ -35,7 +47,7 @@ const Excel = () => {
   // recursively resolve string value at grid[i][j]
   const resolveValue = (grid, i, j) => {
     let value = grid[i][j];
-    if (isSelected(i, j) || value.length < 3 || value[0] != "=") {
+    if (value.length < 3 || value[0] != "=") {
       return value;
     }
 
@@ -53,13 +65,6 @@ const Excel = () => {
     });
 
     return sum;
-  };
-
-  const isSelected = (i, j) => {
-    if (!selected) {
-      return false;
-    }
-    return i == selected[0] && j == selected[1];
   };
 
   let matrix = [];
@@ -93,7 +98,12 @@ const Excel = () => {
           />
         );
       } else {
-        let value = resolveValue(grid, i, j);
+        let value;
+        if (selected && i == selected[0] && j == selected[1]) {
+          value = grid[i][j];
+        } else {
+          value = resolveValue(grid, i, j);
+        }
 
         entry = (
           <TextField
